@@ -62,38 +62,38 @@ import phanu from '../resources/export/fertilizer/phanu.jpg';
 
 const tab = ref('animals');
 const animals = [
-  { name: 'Con dế', img: conde, link: '/export/conde' },
-  { name: 'Trứng dế', img: trunde, link: '/export/trunde' },
-  { name: 'Cá cảnh lẻ', img: cacanhle, link: '/export/cacanhle' },
-  { name: 'Cá cảnh theo đơn', img: cacanhtheodon, link: '/export/cacanhtheodon' },
-  { name: 'Dê', img: de, link: '/export/de' },
-  { name: 'Bò', img: bo, link: '/export/bo' },
-  { name: 'Gà, vịt', img: gavit, link: '/export/gavit' },
-  { name: 'Giun quế', img: giunque, link: '/export/giunque' },
-  { name: 'Vật nuôi khác', img: vatnuoikhac, link: '/export/vatnuoikhac' },
+  { name: 'Con dế', img: conde, link: '/export/form/Vật nuôi/Con dế' },
+  { name: 'Trứng dế', img: trunde, link: '/export/form/Vật nuôi/Trứng dế' },
+  { name: 'Cá cảnh lẻ', img: cacanhle, link: '/export/form/Vật nuôi/Cá cảnh lẻ' },
+  { name: 'Cá cảnh theo đơn', img: cacanhtheodon, link: '/export/form/Vật nuôi/Cá cảnh theo đơn' },
+  { name: 'Dê', img: de, link: '/export/form/Vật nuôi/Dê' },
+  { name: 'Bò', img: bo, link: '/export/form/Vật nuôi/Bò' },
+  { name: 'Gà, vịt', img: gavit, link: '/export/form/Vật nuôi/Gà, vịt' },
+  { name: 'Giun quế', img: giunque, link: '/export/form/Vật nuôi/Giun quế' },
+  { name: 'Vật nuôi khác', img: vatnuoikhac, link: '/export/form/Vật nuôi/Vật nuôi khác' },
 ];
 
 const fruits = [
-  { name: 'Chuối sáp', img: chuoisap, link: '/export-fruit/chuoisap' },
-  { name: 'Dừa uống nước', img: duauongnuoc, link: '/export-fruit/duauongnuoc' },
-  { name: 'Dừa khô', img: duakho, link: '/export-fruit/duakho' },
-  { name: 'Bưởi da xanh', img: buoidaxanh, link: '/export-fruit/buoidaxanh' },
-  { name: 'Mít', img: mit, link: '/export-fruit/mit' },
-  { name: 'Xoài xanh', img: xoaixanh, link: '/export-fruit/xoaixanh' },
-  { name: 'Vú sữa', img: vusualoren, link: '/export-fruit/vusualoren' },
-  { name: 'Chanh, tắc', img: chanhtac, link: '/export-fruit/chanhtac' },
-  { name: 'Chuối sáp giống', img: chuoisapgiong, link: '/export-fruit/chuoisapgiong' },
-  { name: 'Cây mía', img: caymia, link: '/export-fruit/caymia' },
-  { name: 'Bưởi da xanh giống', img: buoidaxanhgiong, link: '/export-fruit/buoidaxanhgiong' },
-  { name: 'Các loại khác', img: fruitkhac, link: '/export-fruit/khac' },
+  { name: 'Chuối sáp', img: chuoisap, link: '/export/form/Cây, trái/Chuối sáp' },
+  { name: 'Dừa uống nước', img: duauongnuoc, link: '/export/form/Cây, trái/Dừa uống nước' },
+  { name: 'Dừa khô', img: duakho, link: '/export/form/Cây, trái/Dừa khô' },
+  { name: 'Bưởi da xanh', img: buoidaxanh, link: '/export/form/Cây, trái/Bưởi da xanh' },
+  { name: 'Mít', img: mit, link: '/export/form/Cây, trái/Mít' },
+  { name: 'Xoài xanh', img: xoaixanh, link: '/export/form/Cây, trái/Xoài xanh' },
+  { name: 'Vú sữa', img: vusualoren, link: '/export/form/Cây, trái/Vú sữa' },
+  { name: 'Chanh, tắc', img: chanhtac, link: '/export/form/Cây, trái/Chanh, tắc' },
+  { name: 'Chuối sáp giống', img: chuoisapgiong, link: '/export/form/Cây, trái/Chuối sáp giống' },
+  { name: 'Cây mía', img: caymia, link: '/export/form/Cây, trái/Cây mía' },
+  { name: 'Bưởi da xanh giống', img: buoidaxanhgiong, link: '/export/form/Cây, trái/Bưởi da xanh giống' },
+  { name: 'Các loại khác', img: fruitkhac, link: '/export/form/Cây, trái/Các loại khác' },
 ];
 
 const fertilizers = [
-  { name: 'Phân trùn quế', img: phantrunque, link: '/export-fertilizer/phantrunque' },
-  { name: 'Phân dê', img: phande, link: '/export-fertilizer/phande' },
-  { name: 'Phân bò khô', img: phanbo, link: '/export-fertilizer/phanbo' },
-  { name: 'Đạm cá', img: damca, link: '/export-fertilizer/damca' },
-  { name: 'Phân ủ', img: phanu, link: '/export-fertilizer/phanu' },
+  { name: 'Phân trùn quế', img: phantrunque, link: '/export/form/Phân hữu cơ/Phân trùn quế' },
+  { name: 'Phân dê', img: phande, link: '/export/form/Phân hữu cơ/Phân dê' },
+  { name: 'Phân bò khô', img: phanbo, link: '/export/form/Phân hữu cơ/Phân bò khô' },
+  { name: 'Đạm cá', img: damca, link: '/export/form/Phân hữu cơ/Đạm cá' },
+  { name: 'Phân ủ', img: phanu, link: '/export/form/Phân hữu cơ/Phân ủ' },
 ];
 </script>
 

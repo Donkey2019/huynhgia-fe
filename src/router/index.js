@@ -4,10 +4,9 @@ import App from '../App.vue'
 import ImportPage from '../views/ImportPage.vue'
 import ExportPage from '../views/ExportPage.vue'
 import About from '../views/About.vue'
-import ExportAnimalDetail from '../views/ExportAnimalDetail.vue'
-import ExportFruitDetail from '../views/ExportFruitDetail.vue'
-import ExportFertilizerDetail from '../views/ExportFertilizerDetail.vue'
 import ImportItemForm from '../views/ImportItemForm.vue'
+import ExportItemForm from '../views/ExportItemForm.vue'
+import Report from '../views/Report.vue'
 
 const routes = [
   { path: '/', redirect: '/home' },
@@ -15,10 +14,9 @@ const routes = [
   { path: '/about', component: About },
   { path: '/import', component: ImportPage },
   { path: '/export', component: ExportPage },
-  { path: '/export/:animal', component: ExportAnimalDetail, props: true },
-  { path: '/export-fruit/:fruit', component: ExportFruitDetail, props: true },
-  { path: '/export-fertilizer/:fertilizer', component: ExportFertilizerDetail, props: true },
+  { path: '/report', component: Report },
   { path: '/import/form/:type/:name', component: ImportItemForm, props: true },
+  { path: '/export/form/:type/:name', component: ExportItemForm, props: true },
 ]
 
 export default createRouter({

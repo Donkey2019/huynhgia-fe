@@ -1,5 +1,5 @@
 <template>
-  <div class="import-detail-container">
+  <div class="export-detail-container">
     <!-- Modal đăng nhập -->
     <div v-if="isLoginModalOpen" class="login-modal-backdrop">
       <div class="login-modal">
@@ -26,31 +26,35 @@
         </select>
       </div>
       <div class="form-group">
-        <label>Ngày nhập:</label>
+        <label>Ngày xuất:</label>
         <input type="date" v-model="date" required />
       </div>
       <div class="form-group">
-        <label>Số lượng nhập:</label>
+        <label>Số lượng xuất:</label>
         <input type="number" v-model.number="quantity" min="1" required />
       </div>
       <div class="form-group">
-        <label>Đơn giá nhập (VND):</label>
+        <label>Đơn giá xuất (VND):</label>
         <input type="text"
-               :value="formatCurrency(importPrice)"
-               @input="onImportPriceInput($event.target.value)"
+               :value="formatCurrency(price)"
+               @input="onPriceInput($event.target.value)"
                inputmode="numeric"
                required />
       </div>
       <div class="form-group">
-        <label>Nhà cung cấp:</label>
-        <select v-model="supplier" required>
-          <option value="" disabled>Chọn nhà cung cấp</option>
-          <option v-for="s in suppliers" :key="s.id" :value="s.id">{{ s.name }}</option>
+        <label>Tổng tiền (VND):</label>
+        <input type="text" :value="formatCurrency(total)" readonly />
+      </div>
+      <div class="form-group">
+        <label>Người mua:</label>
+        <select v-model="shopper" required>
+          <option value="" disabled>Chọn người mua</option>
+          <option v-for="s in shoppers" :key="s.id" :value="s.id">{{ s.name }}</option>
         </select>
       </div>
       <div class="form-group">
-        <label>Tổng tiền (VND):</label>
-        <input type="text" :value="formatCurrency(total)" readonly />
+        <label>Thuộc đơn hàng:</label>
+        <input type="text" v-model="inOrder" maxlength="100" :placeholder="defaultInOrder" />
       </div>
       <div class="form-group">
         <label>Ghi chú:</label>
@@ -66,6 +70,10 @@
 import { ref, onMounted, computed, watch } from 'vue';
 import { useRoute } from 'vue-router';
 import config from '../config.js';
+
+const route = useRoute();
+const itemType = route.params.type;
+const itemName = route.params.name;
 
 // Thêm state cho đăng nhập giả lập
 const isLoginModalOpen = ref(false);
@@ -103,16 +111,12 @@ function handleLogin() {
   isLoginModalOpen.value = false;
 }
 
-const route = useRoute();
-const itemType = route.params.type;
-const itemName = route.params.name;
-
-// Dữ liệu import-prices
-const importItems = ref([]);
+// Dữ liệu export-prices
+const exportItems = ref([]);
 const types = ref([]);
 const selectedType = ref('');
 const selectedName = ref('');
-const filteredItems = computed(() => importItems.value.filter(i => i.type === selectedType.value));
+const filteredItems = computed(() => exportItems.value.filter(i => i.type === selectedType.value));
 
 function todayStr() {
   const d = new Date();
@@ -121,13 +125,24 @@ function todayStr() {
 
 const date = ref(todayStr());
 const quantity = ref(1);
-const importPrice = ref(1000);
-const supplier = ref('');
+const price = ref(10000);
+const shopper = ref('');
+const inOrder = ref('');
 const note = ref(`${itemName} số lượng 1`);
 const message = ref('');
-const suppliers = ref([]);
+const shoppers = ref([]);
 
-const total = computed(() => importPrice.value * quantity.value);
+// Computed để tạo giá trị mặc định cho inOrder
+const defaultInOrder = computed(() => {
+  if (shopper.value && date.value) {
+    const selectedShopper = shoppers.value.find(s => s.id === shopper.value);
+    const shopperName = selectedShopper ? selectedShopper.name : '';
+    return `${shopperName} Ngày xuất ${date.value}`;
+  }
+  return '';
+});
+
+const total = computed(() => price.value * quantity.value);
 
 function formatCurrency(val) {
   if (typeof val === 'object' && val.value !== undefined) val = val.value;
@@ -135,25 +150,26 @@ function formatCurrency(val) {
   return Number(val).toLocaleString('vi-VN');
 }
 
-function onImportPriceInput(val) {
+function onPriceInput(val) {
   // Loại bỏ ký tự không phải số
   const numeric = val.replace(/[^\d]/g, '');
-  importPrice.value = numeric ? parseInt(numeric, 10) : 0;
+  price.value = numeric ? parseInt(numeric, 10) : 0;
 }
 
 onMounted(async () => {
   checkLogin();
+  // Lấy dữ liệu shoppers
   try {
-    const res = await fetch(`${config.EXPORT_API_URL}/suppliers`);
-    suppliers.value = await res.json();
+    const res = await fetch(`${config.EXPORT_API_URL}/shoppers`);
+    shoppers.value = await res.json();
   } catch (e) {
-    suppliers.value = [];
+    shoppers.value = [];
   }
-  // Lấy dữ liệu import-prices
+  // Lấy dữ liệu export-prices
   try {
-    const res = await fetch(`${config.EXPORT_API_URL}/import-prices`);
+    const res = await fetch(`${config.EXPORT_API_URL}/export-prices`);
     const data = await res.json();
-    importItems.value = data;
+    exportItems.value = data;
     types.value = [...new Set(data.map(i => i.type))];
     // Nếu có params truyền vào thì tự động chọn
     if (itemType && types.value.includes(itemType)) {
@@ -164,12 +180,12 @@ onMounted(async () => {
       const found = itemsOfType.find(i => i.name === itemName);
       if (found) {
         selectedName.value = found.name;
-        importPrice.value = found.importPrice;
+        price.value = found.exportPrice;
         note.value = found.note || `${found.name} số lượng ${quantity.value}`;
       } else if (itemsOfType.length > 0) {
         // Nếu không tìm thấy đúng tên, chọn mặc định là item đầu tiên của loại
         selectedName.value = itemsOfType[0].name;
-        importPrice.value = itemsOfType[0].importPrice;
+        price.value = itemsOfType[0].exportPrice;
         note.value = itemsOfType[0].note || `${itemsOfType[0].name} số lượng ${quantity.value}`;
       }
     } else if (types.value.length > 0) {
@@ -178,7 +194,7 @@ onMounted(async () => {
       selectedName.value = '';
     }
   } catch (e) {
-    importItems.value = [];
+    exportItems.value = [];
     types.value = [];
   }
 });
@@ -190,20 +206,28 @@ function onTypeChange() {
 
 // Khi đổi tên hàng
 function onNameChange() {
-  const found = importItems.value.find(i => i.type === selectedType.value && i.name === selectedName.value);
+  const found = exportItems.value.find(i => i.type === selectedType.value && i.name === selectedName.value);
   if (found) {
-    importPrice.value = found.importPrice;
+    price.value = found.exportPrice;
     note.value = found.note || `${found.name} số lượng ${quantity.value}`;
   }
 }
 
 // Tự động cập nhật ghi chú khi đổi số lượng hoặc tên hàng
 watch([quantity, selectedName], () => {
-  const found = importItems.value.find(i => i.type === selectedType.value && i.name === selectedName.value);
+  const found = exportItems.value.find(i => i.type === selectedType.value && i.name === selectedName.value);
   if (found) {
     note.value = found.note || `${found.name} số lượng ${quantity.value}`;
   } else if (selectedName.value) {
     note.value = `${selectedName.value} số lượng ${quantity.value}`;
+  }
+});
+
+// Tự động cập nhật inOrder khi đổi người mua hoặc ngày xuất
+watch([shopper, date], () => {
+  if (!inOrder.value) {
+    // Chỉ cập nhật nếu inOrder chưa được nhập thủ công
+    inOrder.value = defaultInOrder.value;
   }
 });
 
@@ -223,16 +247,17 @@ async function handleSubmit() {
     type: itemType,
     subtype: itemName,
     name: itemName,
-    importPrice: importPrice.value,
+    exportPrice: price.value,
     quantity: quantity.value,
     date: date.value,
-    supplier: supplier.value,
+    shopper: shopper.value,
+    inOrder: inOrder.value || defaultInOrder.value || null,
     total: total.value,
     note: noteWithUser,
-    importer: userInfo.value ? userInfo.value.name : null,
+    exporter: userInfo.value ? userInfo.value.name : null,
   };
   try {
-    const res = await fetch(`${config.EXPORT_API_URL}/imports`, {
+    const res = await fetch(`${config.EXPORT_API_URL}/exports`, {
       method: 'POST',
       headers: { 'Content-Type': 'application/json' },
       body: JSON.stringify(payload),
@@ -249,7 +274,7 @@ async function handleSubmit() {
 </script>
 
 <style scoped>
-.import-detail-container {
+.export-detail-container {
   max-width: 500px;
   margin: 2rem auto;
   background: #fff;

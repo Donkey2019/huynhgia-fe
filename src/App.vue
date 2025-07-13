@@ -15,6 +15,7 @@
         <router-link to="/about" class="nav-tab" exact-active-class="active">Giới thiệu</router-link>
         <router-link to="/import" class="nav-tab" exact-active-class="active">Nhập hàng</router-link>
         <router-link to="/export" class="nav-tab" exact-active-class="active">Xuất hàng</router-link>
+        <router-link to="/report" class="nav-tab" exact-active-class="active">Báo Cáo</router-link>
       </div>
     </nav>
     <router-view></router-view>
