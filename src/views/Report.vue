@@ -414,9 +414,10 @@ onMounted(() => {
   max-width: 1200px;
   margin: 2rem auto;
   padding: 2rem;
-  background: #fff;
+  background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
   border-radius: 12px;
   box-shadow: 0 4px 24px #0002;
+  border: 1px solid #dee2e6;
 }
 
 .report-container h1 {
@@ -433,11 +434,18 @@ onMounted(() => {
 }
 
 .card {
-  background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+  background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
   padding: 1.5rem;
   border-radius: 10px;
   text-align: center;
   border: 1px solid #dee2e6;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  transition: transform 0.2s ease, box-shadow 0.2s ease;
+}
+
+.card:hover {
+  transform: translateY(-2px);
+  box-shadow: 0 4px 16px rgba(0, 0, 0, 0.15);
 }
 
 .card h3 {
@@ -466,6 +474,11 @@ onMounted(() => {
   margin-bottom: 2rem;
   justify-content: center;
   align-items: center;
+  background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+  padding: 1.5rem;
+  border-radius: 10px;
+  border: 1px solid #dee2e6;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
 .filter-group {
@@ -496,10 +509,11 @@ onMounted(() => {
 }
 
 .chart-container {
-  background: #f8f9fa;
-  padding: 1rem;
-  border-radius: 8px;
+  background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+  padding: 1.5rem;
+  border-radius: 10px;
   border: 1px solid #dee2e6;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
 .table-section h2 {
@@ -509,6 +523,11 @@ onMounted(() => {
 
 .table-container {
   overflow-x: auto;
+  background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+  border-radius: 10px;
+  border: 1px solid #dee2e6;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  padding: 1rem;
 }
 
 table {
@@ -602,7 +621,11 @@ tr:hover {
   display: flex;
   gap: 1rem;
   margin-bottom: 2rem;
-  border-bottom: 2px solid #dee2e6;
+  background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+  padding: 1.5rem;
+  border-radius: 10px;
+  border: 1px solid #dee2e6;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
 }
 
 .tab-button {
@@ -619,13 +642,15 @@ tr:hover {
 
 .tab-button:hover {
   color: #256029;
-  background: #f8f9fa;
+  background: linear-gradient(135deg, #f8f9fa 0%, #e9ecef 100%);
+  border-radius: 6px;
 }
 
 .tab-button.active {
   color: #256029;
   border-bottom-color: #256029;
-  background: #f8f9fa;
+  background: linear-gradient(135deg, #e8f5e8 0%, #d4edda 100%);
+  border-radius: 6px;
 }
 
 .orders-list h3 {
@@ -636,8 +661,11 @@ tr:hover {
 
 .orders-table-container {
   overflow-x: auto;
-  border-radius: 8px;
+  background: linear-gradient(135deg, #ffffff 0%, #f8f9fa 100%);
+  border-radius: 10px;
   border: 1px solid #dee2e6;
+  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.1);
+  padding: 1rem;
 }
 
 .orders-table {

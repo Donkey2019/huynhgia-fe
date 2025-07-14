@@ -17,13 +17,28 @@
 
 <script setup>
 import { ref, onMounted, onUnmounted } from 'vue';
-import img1 from '../resources/homepaner1.jpg';
-import img2 from '../resources/homepaner2.jpg';
-import img3 from '../resources/homepaner3.jpg';
-import img4 from '../resources/homepaner4.jpg';
-import img5 from '../resources/homepaner5.jpg';
 
-const images = [img1, img2, img3, img4, img5];
+// Sử dụng đường dẫn tương đối thay vì import trực tiếp
+const images = [
+  '/src/resources/homepaner/0.jpg',
+  '/src/resources/homepaner/1.jpg',
+  '/src/resources/homepaner/2.JPG',
+  '/src/resources/homepaner/3.JPG',
+  '/src/resources/homepaner/4.jpg',
+  '/src/resources/homepaner/5.JPG',
+  '/src/resources/homepaner/6.JPG',
+  '/src/resources/homepaner/7.JPG',
+  '/src/resources/homepaner/8.JPG',
+  '/src/resources/homepaner/9.JPG',
+  '/src/resources/homepaner/10.JPG',
+  '/src/resources/homepaner/11.JPG',
+  '/src/resources/homepaner/12.jpg',
+  '/src/resources/homepaner/13.JPG',
+  '/src/resources/homepaner/14.jpg',
+  '/src/resources/homepaner/15.jpg',
+  '/src/resources/homepaner/16.jpg'
+];
+
 const currentIndex = ref(0);
 let interval = null;
 
