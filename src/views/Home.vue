@@ -20,23 +20,23 @@ import { ref, onMounted, onUnmounted } from 'vue';
 
 // Sử dụng đường dẫn tương đối thay vì import trực tiếp
 const images = [
-  '/src/resources/homepaner/0.jpg',
-  '/src/resources/homepaner/1.jpg',
-  '/src/resources/homepaner/2.JPG',
-  '/src/resources/homepaner/3.JPG',
-  '/src/resources/homepaner/4.jpg',
-  '/src/resources/homepaner/5.JPG',
-  '/src/resources/homepaner/6.JPG',
-  '/src/resources/homepaner/7.JPG',
-  '/src/resources/homepaner/8.JPG',
-  '/src/resources/homepaner/9.JPG',
-  '/src/resources/homepaner/10.JPG',
-  '/src/resources/homepaner/11.JPG',
-  '/src/resources/homepaner/12.jpg',
-  '/src/resources/homepaner/13.JPG',
-  '/src/resources/homepaner/14.jpg',
-  '/src/resources/homepaner/15.jpg',
-  '/src/resources/homepaner/16.jpg'
+  '/homepaner/0.jpg',
+  '/homepaner/1.jpg',
+  '/homepaner/2.JPG',
+  '/homepaner/3.JPG',
+  '/homepaner/4.jpg',
+  '/homepaner/5.JPG',
+  '/homepaner/6.JPG',
+  '/homepaner/7.JPG',
+  '/homepaner/8.JPG',
+  '/homepaner/9.JPG',
+  '/homepaner/10.JPG',
+  '/homepaner/11.JPG',
+  '/homepaner/12.jpg',
+  '/homepaner/13.JPG',
+  '/homepaner/14.jpg',
+  '/homepaner/15.jpg',
+  '/homepaner/16.jpg'
 ];
 
 const currentIndex = ref(0);

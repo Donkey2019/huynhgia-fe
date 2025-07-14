@@ -1,0 +1,17 @@
+services:
+  huynhgia-fe:
+    build: .
+    ports:
+      - "80:80"
+    container_name: huynhgia-frontend
+    restart: unless-stopped
+    environment:
+      - NODE_ENV=production
+    volumes:
+      - ./logs:/var/log/nginx
+    networks:
+      - huynhgia-network
+
+networks:
+  huynhgia-network:
+    driver: bridge 
