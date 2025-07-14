@@ -82,7 +82,7 @@ export default {
 }
 .nav-tabs {
   display: flex;
-  gap: clamp(0.5rem, 2vw, 2rem);
+  gap: clamp(0.2rem, 1vw, 1rem); /* giảm gap */
   justify-content: flex-end;
   flex: 1;
   min-width: 0;
@@ -141,7 +141,7 @@ export default {
     gap: clamp(0.2rem, 1vw, 0.5rem);
   }
   .nav-tab {
-    font-size: 0.8rem;
+    font-size: 0.7rem; /* giảm thêm 1 size so với cũ */
     padding: 0.1rem 0.2rem;
     min-width: unset;
     max-width: 70px;
