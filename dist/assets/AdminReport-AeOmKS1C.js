@@ -1,0 +1,1 @@
+import{_ as n,c as t,a as e,o as r}from"./index-j9dR075y.js";const a={name:"AdminReport"};function s(c,o,p,l,d,i){return r(),t("div",null,o[0]||(o[0]=[e("h2",null,"Báo cáo",-1),e("p",null,"Trang báo cáo cho Admin.",-1)]))}const u=n(a,[["render",s]]);export{u as default};

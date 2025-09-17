@@ -17,6 +17,17 @@ const routes = [
   { path: '/report', component: Report },
   { path: '/import/form/:type/:name', component: ImportItemForm, props: true },
   { path: '/export/form/:type/:name', component: ExportItemForm, props: true },
+  // Admin parent with nested tabs
+  {
+    path: '/admin',
+    component: () => import('../views/admin/Admin.vue'),
+    children: [
+      { path: '', redirect: '/admin/attendance' },
+      { path: 'attendance', component: () => import('../views/admin/AdminAttendance.vue') },
+      { path: 'staff', component: () => import('../views/admin/AdminStaff.vue') },
+      { path: 'report', component: () => import('../views/admin/AdminReport.vue') }
+    ]
+  }
 ]
 
 export default createRouter({

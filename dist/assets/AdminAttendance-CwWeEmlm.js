@@ -1,0 +1,1 @@
+import{_ as t,c as a,a as e,o as c}from"./index-j9dR075y.js";const o={name:"AdminAttendance"};function r(s,n,l,d,m,p){return c(),a("div",null,n[0]||(n[0]=[e("h2",null,"Chấm công",-1),e("p",null,"Trang quản lý chấm công.",-1)]))}const i=t(o,[["render",r]]);export{i as default};

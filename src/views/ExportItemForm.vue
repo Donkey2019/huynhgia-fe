@@ -68,10 +68,11 @@
 
 <script setup>
 import { ref, onMounted, computed, watch } from 'vue';
-import { useRoute } from 'vue-router';
+import { useRoute, useRouter } from 'vue-router';
 import config from '../config.js';
 
 const route = useRoute();
+const router = useRouter();
 const itemType = route.params.type;
 const itemName = route.params.name;
 
@@ -264,6 +265,10 @@ async function handleSubmit() {
     });
     if (res.ok) {
       message.value = 'Lưu thành công!';
+      // Chuyển hướng về trang export sau khi lưu thành công
+      setTimeout(() => {
+        router.push('/export');
+      }, 1500); // Đợi 1.5 giây để hiển thị thông báo thành công
     } else {
       message.value = 'Có lỗi khi lưu.';
     }
